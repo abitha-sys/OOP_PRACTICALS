@@ -1,29 +1,34 @@
 #include <iostream>
 using namespace std;
 
-// Function to divide two numbers
-double divide(double a, double b) {
-if (b == 0) {
-throw "Division by zero!"; // throw exception (const char*)
+// Function to read two double numbers
+void readNumbers(double &a, double &b) {
+    cout << "Enter two numbers: ";
+    cin >> a >> b;
 }
-return a / b;
+
+// Function to calculate division
+double divide(double a, double b) {
+    if (b == 0) {
+        // Throw an exception if denominator is zero
+        throw runtime_error("Division by zero is not allowed.");
+    }
+    return a / b;
 }
 
 int main() {
-double num1, num2;
-cout << "Enter first number: ";
-cin >> num1;
-cout << "Enter second number: ";
-cin >> num2;
+    double num1, num2, result;
 
-try {
-double result = divide(num1, num2);
+    readNumbers(num1, num2);
 
-cout << "Result = " << result << endl;
-}
-catch (const char* msg) { // must match throw type
-cout << "Error: " << msg << endl;
-}
+    try {
+        result = divide(num1, num2);
+        cout << "Result: " << result << endl;
+    } 
+    catch (runtime_error &e) {
+        cout << "Exception caught: " << e.what() << endl;
+    }
 
-return 0;
+    cout << "Program ended normally." << endl;
+    return 0;
 }
