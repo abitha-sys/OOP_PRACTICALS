@@ -60,28 +60,26 @@ int main() {
     Inventory item;
     int choice;
 
-    do {
-        cout << "\n\n*** INVENTORY MENU ***";
-        cout << "\n1. Add Item Record";
-        cout << "\n2. Display All Records";
-        cout << "\n3. Exit";
-        cout << "\nEnter your choice: ";
-        cin >> choice;
+    cout << "\n\n*** INVENTORY MENU ***";
+    cout << "\n1. Add Item Record";
+    cout << "\n2. Display All Records";
+    cout << "\n3. Exit";
+    cout << "\nEnter your choice: ";
+    cin >> choice;
 
-        switch (choice) {
-        case 1:
-            item.writeToFile();
-            break;
-        case 2:
-            item.readFromFile();
-            break;
-        case 3:
-            cout << "\nExiting program...";
-            break;
-        default:
-            cout << "\nInvalid choice!";
-        }
-    } while (choice != 3);
+    switch (choice) {
+    case 1:
+        item.writeToFile();
+        break;
+    case 2:
+        item.readFromFile();
+        break;
+    case 3:
+        cout << "\nExiting program...";
+        break;
+    default:
+        cout << "\nInvalid choice!";
+    }
 
     return 0;
 }
