@@ -1,99 +1,115 @@
-#include <iostream>
+#include <string>
 using namespace std;
 
 // Base class
 class Staff {
-public:
+protected:
+    int id;
     string name;
-    int staffID;
-    string department;
-
-    void getData() {
+    string qualification;
+public:
+    void getStaffData() {
+        cout << "Enter Staff ID: ";
+        cin >> id;
         cout << "Enter Name: ";
         cin >> name;
-        cout << "Enter ID: ";
-        cin >> staffID;
-        cout << "Enter Department: ";
-        cin >> department;
-    }
-
-    void showData() {
-        cout << "Name: " << name << ", ID: " << staffID << ", Dept: " << department;
-    }
-};
-
-// Derived class Teacher
-class Teacher : public Staff {
-public:
-    string subject;
-    string qualification;
-
-    void getData() {
-        Staff::getData();
-        cout << "Enter Subject: ";
-        cin >> subject;
         cout << "Enter Qualification: ";
         cin >> qualification;
     }
 
-    void showData() {
-        Staff::showData();
-        cout << ", Subject: " << subject << ", Qualification: " << qualification << endl;
+    void displayStaffData() {
+        cout << "\nStaff ID: " << id;
+        cout << "\nName: " << name;
+        cout << "\nQualification: " << qualification;
     }
 };
 
-// Derived class Administrator
-class Administrator : public Staff {
-public:
+// Derived class 1: Teaching staff
+class Teaching : public Staff {
+    string subject;
     string designation;
-
+    int publications;
+public:
     void getData() {
-        Staff::getData();
+        cout << "\n--- Enter Teaching Staff Details ---\n";
+        getStaffData();
+        cout << "Enter Subject: ";
+        cin >> subject;
         cout << "Enter Designation: ";
         cin >> designation;
+        cout << "Enter Number of Publications: ";
+        cin >> publications;
     }
 
-    void showData() {
-        Staff::showData();
-        cout << ", Designation: " << designation << endl;
+    void display() {
+        cout << "\n--- Teaching Staff Details ---";
+        displayStaffData();
+        cout << "\nSubject: " << subject;
+        cout << "\nDesignation: " << designation;
+        cout << "\nPublications: " << publications << endl;
     }
 };
 
-// Derived class Support Staff
-class SupportStaff : public Staff {
+// Derived class 2: Non-Teaching staff
+class NonTeaching : public Staff {
+    string department;
+    int workingHours;
 public:
-    string duty;
-
     void getData() {
-        Staff::getData();
-        cout << "Enter Duty: ";
-        cin >> duty;
+        cout << "\n--- Enter Non-Teaching Staff Details ---\n";
+        getStaffData();
+        cout << "Enter Department: ";
+        cin >> department;
+        cout << "Enter Working Hours per Day: ";
+        cin >> workingHours;
     }
 
-    void showData() {
-        Staff::showData();
-        cout << ", Duty: " << duty << endl;
+    void display() {
+        cout << "\n--- Non-Teaching Staff Details ---";
+        displayStaffData();
+        cout << "\nDepartment: " << department;
+        cout << "\nWorking Hours: " << workingHours << endl;
     }
 };
 
+// Derived class 3: Administrative staff
+class Administrative : public Staff {
+    string role;
+    int officeNo;
+public:
+    void getData() {
+        cout << "\n--- Enter Administrative Staff Details ---\n";
+        getStaffData();
+        cout << "Enter Role: ";
+        cin >> role;
+        cout << "Enter Office Number: ";
+        cin >> officeNo;
+    }
+
+    void display() {
+        cout << "\n--- Administrative Staff Details ---";
+        displayStaffData();
+        cout << "\nRole: " << role;
+        cout << "\nOffice No: " << officeNo << endl;
+    }
+};
+
+// Main Function
 int main() {
-    Teacher t;
-    Administrator a;
-    SupportStaff s;
+    Teaching t;
+    NonTeaching nt;
+    Administrative ad;
 
-    cout << "\nEnter Teacher Details:\n";
+    cout << "\n===== Educational Institution Staff Database =====\n";
+
     t.getData();
+    nt.getData();
+    ad.getData();
 
-    cout << "\nEnter Administrator Details:\n";
-    a.getData();
-
-    cout << "\nEnter Support Staff Details:\n";
-    s.getData();
-
-    cout << "\n--- Staff Database ---\n";
-    t.showData();
-    a.showData();
-    s.showData();
+    cout << "\n===== Staff Details =====\n";
+    t.display();
+    nt.display();
+    ad.display();
 
     return 0;
 }
