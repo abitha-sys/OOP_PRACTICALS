@@ -1,102 +1,85 @@
-#include <iostream>
-#include <string>
+#include<iostream>
 using namespace std;
-
-class bank {
-    string name, atype;
-    int ano;
-    int bal;
-public:
-    // Constructor
-    bank(int no, string n, string t, int b) {
-        ano = no;
-        name = n;
-        atype = t;
-        bal = b;
+class Account
+{ public:
+    string name;
+    int accno;
+    string acctype;
+    double bal;
+    Account(string n,int no,string t,double b)
+    {
+        name=n;
+        accno=no;
+        acctype=t;
+        bal=b;
     }
-
-    // Default constructor
-    bank() {
-        ano = 0;
-        name = "";
-        atype = "";
-        bal = 0;
+  
+    void deposite()
+    {
+        int amount;
+        cout<<"Enter the amount to be deposite: ";
+        cin>>amount;
+        bal=bal+amount;
+        cout<<"Balance after deposite : "<<bal<<endl;
     }
-
-    // Get account info
-    void getinfo() {
-        cout << "Enter Account no.: ";
-        cin >> ano;
-        cout << "Enter account type: ";
-        cin >> atype;
-        cout << "Enter Name: ";
-        cin >> name;
-        cout << "Enter balance amount: ";
-        cin >> bal;
-    }
-
-    // Deposit money
-    void deposit() {
-        int amt;
-        cout << "Initial balance is: " << bal << endl;
-        cout << "Enter the amount to deposit: ";
-        cin >> amt;
-        bal = bal + amt;
-        cout << "New balance is: " << bal << endl;
-    }
-
-    // Withdraw money
-    void withdraw() {
-        int amt;
-        cout << "Initial balance is: " << bal << endl;
-        cout << "Enter the amount to withdraw: ";
-        cin >> amt;
-        if (amt > bal) {
-            cout << "Insufficient balance!" << endl;
-        } else {
-            bal = bal - amt;
-            cout << "New balance is: " << bal << endl;
+    
+    void withdraw()
+    {
+        int amount;
+        cout<<"Enter the amount to withdraw: ";
+        cin>>amount;
+        if(amount<bal)
+        {
+            cout<<"After withdrawal bank balance is = "<<bal-amount<<endl;
+        }
+        else{
+            cout<<"Insufficient balance";
+            
         }
     }
-
-    // Display account details
-    void display() {
-        cout << "\nAccount No.: " << ano
-             << "\nName: " << name
-             << "\nAccount Type: " << atype
-             << "\nBalance: " << bal << endl;
+    
+    void display(){
+        cout<<"Name :"<<name<<endl;
+        cout<<"Acount type :"<<acctype<<endl;
+        cout<<"Account No :"<<accno<<endl;
+        cout<<"Balance :"<<bal<<endl;
+    
+        
+        
     }
+    
 };
-
-// Main function
-int main() {
-    bank b1;
-    b1.getinfo();
-
-    int choice;
-    do {
-        cout << "\n----- MENU -----\n";
-        cout << "1. Deposit\n2. Withdraw\n3. Display\n4. Exit\n";
-        cout << "Enter your choice: ";
-        cin >> choice;
-
-        switch (choice) {
-        case 1:
-            b1.deposit();
+int main()
+{
+    Account a("abitha",210,"saving", 20000);
+    int ch;
+    do{
+        cout<<"Select  the choice:\n";
+        cout<<"1.deposit:\n";
+        cout<<"2.Withdraw:\n";
+        cout<<"3.Display :\n";
+        cout<<"4.Exit:\n";
+        cout<<"Enter the choice:";
+        cin>>ch;
+        switch(ch)
+        {
+            case 1:
+            a.deposite();
             break;
-        case 2:
-            b1.withdraw();
+            case 2:
+             a.withdraw();
             break;
-        case 3:
-            b1.display();
+            case 3:
+            a.display();
             break;
-        case 4:
-            cout << "Exiting..." << endl;
+            case 4:
+            cout<<"Thank you !";
             break;
-        default:
-            cout << "Invalid choice!" << endl;
+            default:
+            cout<<"Invalid choice\n";
         }
-    } while (choice != 4);
-
+    }while(ch!=4);
+   
     return 0;
+    
 }
