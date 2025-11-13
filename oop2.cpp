@@ -43,8 +43,7 @@ public:
     // Function to accept employee details
     void acceptDetails() {
         cout << "Enter Name: ";
-        cin.ignore();
-        getline(cin, name);
+        cin>>name;
         cout << "Enter Employee ID: ";
         cin >> emp_id;
         cout << "Enter Department: ";
