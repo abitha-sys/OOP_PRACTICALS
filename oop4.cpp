@@ -41,27 +41,33 @@ public:
         return temp;
     }
 
-    // Input operator >> overloading (NO friend)
-    istream& operator>>(istream &in) {
-        cout << "Enter real part: ";
-        in >> real;
-        cout << "Enter imaginary part: ";
-        in >> imag;
-        return in;
-    }
+    // FRIEND input operator >>
+    friend istream& operator>>(istream &in, Complex &c);
 
-    // Output operator << overloading (NO friend)
-    ostream& operator<<(ostream &out) {
-        out << real << " + " << imag << "i";
-        return out;
-    }
+    // FRIEND output operator <<
+    friend ostream& operator<<(ostream &out, const Complex &c);
 };
+
+// Input operator
+istream& operator>>(istream &in, Complex &c) {
+    cout << "Enter real part: ";
+    in >> c.real;
+    cout << "Enter imaginary part: ";
+    in >> c.imag;
+    return in;
+}
+
+// Output operator
+ostream& operator<<(ostream &out, const Complex &c) {
+    out << c.real << " + " << c.imag << "i";
+    return out;
+}
 
 int main() {
     Complex c1, c2, sum, product;
 
     cout << "Enter first complex number:\n";
-    cin >> c1;   // calls operator>>()
+    cin >> c1;
 
     cout << "\nEnter second complex number:\n";
     cin >> c2;
@@ -69,17 +75,10 @@ int main() {
     sum = c1 + c2;
     product = c1 * c2;
 
-    cout << "\nFirst Complex Number  : ";
-    cout << c1 << endl;
-
-    cout << "Second Complex Number : ";
-    cout << c2 << endl;
-
-    cout << "Sum                   : ";
-    cout << sum << endl;
-
-    cout << "Product               : ";
-    cout << product << endl;
+    cout << "\nFirst Complex Number  : " << c1 << endl;
+    cout << "Second Complex Number : " << c2 << endl;
+    cout << "Sum                   : " << sum << endl;
+    cout << "Product               : " << product << endl;
 
     return 0;
 }
